@@ -1,0 +1,106 @@
+You can add a normal HTML form to that page and wire it to your Apollo inbound router by matching the field names and adding Apollo’s JavaScript snippet to your site’s code.[1][2]
+
+## Overall steps
+
+1. In Apollo, open your inbound router → Share → “Integrate with your website form,” add `peopleplacers.us` as an allowed domain, and go to the field‑mapping screen (like in your screenshot). Copy the JS snippet Apollo gives you and keep that window open.[2][1]
+2. On your WordPress/GoDaddy/website builder page `https://peopleplacers.us/project-solutions/`, add a form (via your page builder or raw HTML) that collects at least the required fields from Apollo: work email, first name, last name, company name, company location, and audit history, plus any others you want.[3][1]
+
+## Match Apollo fields to your form
+
+Apollo matches by the HTML `name` attribute, not the label text.[1][2]
+
+- For each inbound form field (Work Email, First name, etc.), set the corresponding input’s `name` on your website form.  
+  - Example HTML (conceptually):  
+    - Work Email → `<input type="email" name="email" />`  
+    - First name → `<input type="text" name="first_name" />`  
+    - Last name → `<input type="text" name="last_name" />`  
+    - Company name → `<input type="text" name="company_name" />`  
+    - Company location (single‑select) → `<select name="company_location">...</select>`  
+    - Audit History (single‑select) → `<select name="audit_history">...</select>`  
+- In the Apollo mapping screen, paste each of those `name` values into the “Your website form fields” column so every required field shows as mapped.[2]
+
+If Apollo defines a field as a single‑select with specific options (like your “Company size” and “Audit History”), be sure your website select options use the same choices Apollo expects.[1][2]
+
+## Add the Apollo script to your site
+
+1. Take the JS snippet from the “Integrate with your website form” area and paste it into your website’s code, usually in the global header or between `<head>` tags so it loads on every page (or at least on `/project-solutions/`).[2][1]
+2. Make sure the `appId` and `schedulingLink` values in that snippet remain exactly as provided by Apollo.[1]
+
+## Connect form submission to Apollo
+
+With the script on the page, you tell Apollo to submit your form data when the user clicks your form’s submit button.[1]
+
+- Simplest version (if this is the first and only form on the page):  
+  - Add a small inline script or custom JS that calls `window.ApolloMeetings.submit()` on submit; when called with no parameters it will grab the first form element and send mapped fields into Apollo, triggering the router and calendar flow.[1]
+- If you have multiple forms, you can either:  
+  - Make your intake form the first form on the page, or  
+  - Pass a reference to that specific form into `ApolloMeetings.submit({ form: yourFormElement })` as shown in Apollo’s examples.[1]
+
+## What you probably want help with next
+
+If you tell which builder you’re using on `peopleplacers.us` (GoDaddy Websites, WordPress + Elementor, etc.), a short code snippet can be written specifically for that environment and tailored field names that match exactly what you configured in Apollo’s inbound form.
+
+[1](https://knowledge.apollo.io/hc/en-us/articles/19083452478733-Integrate-Your-Web-Forms-with-Meetings)
+[2](https://knowledge.apollo.io/hc/en-us/articles/26576534985101-Use-Case-Auto-fill-Web-Forms-Using-Apollo-s-Data)
+[3](https://knowledge.apollo.io/hc/en-us/articles/17919970244109-Create-Inbound-Routers-for-Your-Meetings)
+[4](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/images/37531579/4e94c54b-1e4a-4c93-9933-e2b3b55c1a9d/image.jpg?AWSAccessKeyId=ASIA2F3EMEYE6Y6KGPFX&Signature=1TyeYgPnpl4puzJyvhE%2BR4K%2B0ts%3D&x-amz-security-token=IQoJb3JpZ2luX2VjECgaCXVzLWVhc3QtMSJIMEYCIQCL9CRK1Rxaao4uTLo5vLbp683wJg2GKpdO%2B7gkDIkJMwIhAP23DAyEwFbCMGJYFCHLuI%2BBNLLDoRTWG15b5j1wiRwKKvwECPD%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQARoMNjk5NzUzMzA5NzA1IgwnqVVgMxzozdsi4gQq0ASWk0uw0uw9ThgFdks8BybOzeDXS6PUSxTpNTDzkmjyi%2FQ9jTlu17d4Lswu8xMualTjQ%2FfDLjQZN7%2FfrrqC27%2Fz%2Fos%2F7S3JCG4qNIeNnq1yXn3sDjL3OxWlD2Bp83UsShSZ22xPf%2BLC2deDNt3forY0h1sulQnpNxsJRUSd4jRFlNGCu8OkvrI7N0wovqiFxSi7cn355bVl3s1o0EaJbn9NzAAsB0j32NrMvtdsxfUt%2BZhcex%2BCOJtg9wALo4Ab7n2magqCTUyXJQOh4qaE77tgEtAs0qCOQkOdh3g0pE3En3UFEXXxJAtQe17408uGUzk95PBTZujgkd0jUYLuZT1AMbeW3CM7sJIvsJ0vnMsFTroMvahNJH1VkedGf82Pp%2FHcjg3AoVdx3wirRD6tQfLX7tppXe%2FV98Y0lTkeyQ025791%2FIP4OsvQabuIHQ4v5fnFT2%2Fb0b0c9Nf0%2BVacsldhSmNzv77xFPCu%2BR0wwEADtv9D%2Fg5HaWndq6sInVAImkM%2Fi%2BeQ1rZreW6r7o68cSpWf9L6T7bV4uYGr6pdyxDqcLdf4PvigIPFVfjTTMtTLjzdKylQowDihdXeHS5rYNNCbjW9HrEzwkOxNfDYYVSnJmruGHdS1byN4ftjCiUNGsmrG5LfgOUzbHyfWyE9nDTZv9dDITmuwR3S3oE44MMXH%2Fii65v7LVLHxNaTTDezSiB27Nav2OxWoOVxXAIDw%2BG8N%2F3cba1EZxCx%2F0MCiiiNPr1E%2F5dl6rFpw6We4I1R%2FsEATOahxoQh39cjqgxNKiLIMOqes8kGOpcBtQ6y0H8%2F5UaBLPWXxdh17sQgkEPnJAHm4NULoQwAEfobyPtc394sepzSZMuSkNFsHB191jjfhfLWphgQ0IdeNifkT6pKlqlaylXCrykH2NZa9yHY%2F3xv3Hq0FoXf3KzouTjXBBPsuI%2FKMoSNBupFazcR1SjaOOBm3cw6hA3apLuwRn6ckn%2Bp9EzhsP55MjRWZFM3L7CEWQ%3D%3D&Expires=1764545685)
+[5](https://peopleplacers.us/project-solutions/)
+[6](https://knowledge.apollo.io/hc/en-us/articles/37944366290189-Use-Form-Enrichment-to-Capture-More-Leads-with-Deeper-Insights)
+[7](https://www.default.com/integrations/apollo-io)
+[8](https://www.apollographql.com/docs/graphos/routing/customization/overview)
+[9](https://advancedformintegration.com/docs/afi/receiver-platforms/apollo-io/)
+[10](https://dgt27.com/blog/how-to-integrate-apollo-with-salesforce/)
+[11](https://www.youtube.com/watch?v=lakAZ_u4TlA)
+[12](https://www.apollographql.com/docs/graphos/routing/v1/configuration)
+[13](https://knowledge.apollo.io/hc/en-us/articles/39871034159629-Inbound-Overview)
+[14](https://www.youtube.com/shorts/cLeik2xeYyE)
+[15](https://www.youtube.com/watch?v=_AarYJQdXLo)
+[16](https://www.revenuehero.io/playbooks/automate-enrichmet-with-apollo-and-route-to-right-rep)
+[17](https://knowledge.apollo.io/hc/en-us/articles/30896128837133-Troubleshoot-Form-Enrichment)
+[18](https://www.instagram.com/reel/DQvgydhjKHt/)
+[19](https://www.saasboost.io/blog/how-to-set-up-apollo-io-website-visitor-id---part-1)
+[20](https://www.youtube.com/watch?v=YxGqEIJ8rM4)
+[21](https://www.apollo.io)
+[22](https://www.clay.com/university/guide/apollo-io-integration-overview)
+
+
+Use WordPress on your GoDaddy/cPanel hosting to place both the Apollo script (in the header) and the intake form (in the page content).[1][2][3]
+
+## Where to put the Apollo script
+
+- Because you are on GoDaddy WordPress, the cleanest path is to use a “Header & Footer”–type plugin (or your theme’s custom code panel) and paste the Apollo JS snippet into the global **head** area so it loads on every page.[2][4]
+- If you prefer to edit files directly in cPanel, copy `header.php` into a child theme and paste the Apollo snippet before the closing `</head>` tag; the child theme’s `header.php` will override the original.[5][1]
+
+## How to add the form on `/project-solutions/`
+
+- In WordPress, edit the “Project Solutions” page, add a **Custom HTML** block, and paste your form HTML with the fields Apollo expects (email, first_name, last_name, company_name, company_location, audit_history, etc.).[6][3]
+- Make sure the `name` attributes in your inputs/selects exactly match what you mapped in Apollo’s inbound router screen so Apollo can read them when `window.ApolloMeetings.submit()` runs.[3]
+
+## Triggering Apollo from WordPress form submit
+
+- In that same page (or globally), add a small inline script that listens for the form’s submit and calls `window.ApolloMeetings.submit()`; this will grab the first form on the page and push the data into Apollo, firing your inbound router.[3]
+- If you later have multiple forms, pass the specific form element into `ApolloMeetings.submit({ form: document.getElementById('your-form-id') })` so only that intake form is routed.[3]
+
+If you share whether you want to edit via plugin only (no PHP) or you’re comfortable editing `functions.php`/`header.php`, a concrete code snippet can be tailored to your setup.
+
+[1](https://www.godaddy.com/help/change-the-header-in-wordpress-26441)
+[2](https://kinsta.com/blog/add-code-wordpress-header-footer/)
+[3](https://knowledge.apollo.io/hc/en-us/articles/19083452478733-Integrate-Your-Web-Forms-with-Meetings)
+[4](https://www.godaddy.com/resources/au/wordpress/3-ways-insert-javascript-wordpress-pages-posts)
+[5](https://www.godaddy.com/help/set-up-meta-tags-in-wordpress-27237)
+[6](https://thewhitelabelagency.com/how-to-use-wordpress-with-godaddy/)
+[7](https://peopleplacers.us/project-solutions/)
+[8](https://www.godaddy.com/resources/skills/3-ways-to-insert-javascript-into-wordpress-pages-or-posts)
+[9](https://www.godaddy.com/help/create-headers-in-wordpress-26955)
+[10](https://www.godaddy.com/resources/in/skills/3-ways-insert-javascript-wordpress-pages-posts)
+[11](https://www.wpzoom.com/blog/wordpress-shortcodes/)
+[12](https://knowledge.apollo.io/hc/en-us/articles/17919970244109-Create-Inbound-Routers-for-Your-Meetings)
+[13](https://www.sitepoint.com/create-custom-shortcodes-for-wordpress-in-two-minutes/)
+[14](https://wpforms.com/developers/how-to-display-shortcodes-inside-the-html-field/)
+[15](https://knowledge.apollo.io/hc/en-us/articles/26576534985101-Use-Case-Auto-fill-Web-Forms-Using-Apollo-s-Data)
+[16](https://www.godaddy.com/help/add-html-or-custom-code-to-my-site-27252)
+[17](https://www.reddit.com/r/Wordpress/comments/15vknyo/how_to_add_shortcode_in_a_custom_html_page/)
+[18](https://www.youtube.com/watch?v=X1d7i8SZ5VM)
+[19](https://www.godaddy.com/help/edit-header-options-for-my-wordpress-site-24017)
+[20](https://www.wpbeginner.com/wp-tutorials/how-to-add-a-shortcode-in-wordpress/)
+[21](https://21165194.fs1.hubspotusercontent-na1.net/hubfs/21165194/LA%20Cold%20Calls%20in%20Apollo%20transcript.pdf)
